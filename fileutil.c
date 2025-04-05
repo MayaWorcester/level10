@@ -39,26 +39,26 @@ char ** loadFileAA(char *filename, int *size)
 	while(fgets(buffer, 1000, in) != NULL)
     {
     	// Trim newline.
-	    char *nl = strchr(buffer, '\n');
+		char *nl = strchr(buffer, '\n');
     	if (nl)
     	{
-     	    *nl = '\0';
+     		*nl = '\0';
     	}
 
-	    // Expand array if necessary (realloc).
-	    if (arrSize == capacity)
-	    {
-	    	capacity += 50;
+		// Expand array if necessary (realloc).
+		if (arrSize == capacity)
+		{
+			capacity += 50;
 			arr = realloc(arr, capacity * sizeof(char *));
-	     }
+		}
 
-	     // Allocate memory for the string (str).
-	     arr[arrSize] = malloc(strlen(buffer) + 1);
+		// Allocate memory for the string (str).
+		arr[arrSize] = malloc(strlen(buffer) + 1);
 
-	     // Copy each line into the string (use strcpy).
-	     // Attach the string to the large array (assignment =).
-	     strcpy(arr[arrSize], buffer);
-	     arrSize++;
+		// Copy each line into the string (use strcpy).
+		// Attach the string to the large array (assignment =).
+		strcpy(arr[arrSize], buffer);
+		arrSize++;
 	}
     // Close the file.
 	fclose(in);
@@ -113,16 +113,17 @@ char * substringSearchAA(char *target, char **lines, int size)
 			break;
 		}
 	}
-		// If substring was found, return the substring
-		if (found == 1)
-		{
-			return str;
-		}
-		// otherwise return NULL
-		else
-		{
-			return NULL;
-		}
+	
+	// If substring was found, return the substring
+	if (found == 1)
+	{
+		return str;
+	}
+	// otherwise return NULL
+	else
+	{
+		return NULL;
+	}
 }
 
 char * substringSearch2D(char *target, char (*lines)[COLS], int size)
